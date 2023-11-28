@@ -1,14 +1,13 @@
-﻿void PrintResultArr(string[] arr)
+﻿void PrintArr(string[] arr) //функция для вывода массива на печать
 {
-    for (int i = 0; i < arr.Length - 1; i++)
+    for (int i = 0; i < arr.Length; i++)
     {
-        if (i == 0) Console.Write($"[\"{arr[i]}\", ");
-        else Console.Write($"\"{arr[i]}\", ");
-    }
-    Console.Write($"\"{arr[^1]}\"]");
+        if (i == 0) Console.Write($"[\"{arr[i]}\", ");      
+        else Console.Write(i == arr.Length-1 ? $"\"{arr[i]}\"]" : $"\"{arr[i]}\", ");
+    }    
 }
 
-string[] StringFilter(string[] array)
+string[] StringFilter(string[] array) //основная функция, возвращающая новый массив из исходного, со строками длиной 3 и менее символов 
 {
     int size = 0;
     int count = 0;
@@ -22,7 +21,6 @@ string[] StringFilter(string[] array)
     }
 
     string[] resultArr = new string[size];
-
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i].Length <= 3)
@@ -33,8 +31,10 @@ string[] StringFilter(string[] array)
     return resultArr;
 }
 
-string[] array = { "Один", "Два", "Три", "Четыре", ":)" };
+string[] array = { "Один", "Два", "Три", "Четыре", ":)" }; //исходный массив со строками
 
 string[] result = StringFilter(array);
 
-PrintResultArr(result);
+PrintArr(array);
+Console.Write(" -> ");
+PrintArr(result);
