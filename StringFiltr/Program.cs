@@ -2,8 +2,13 @@
 {
     for (int i = 0; i < arr.Length; i++)
     {
-        if (i == 0) Console.Write($"[\"{arr[i]}\", ");
-        else Console.Write(i == arr.Length - 1 ? $"\"{arr[i]}\"]" : $"\"{arr[i]}\", ");
+        if (arr[i] == "" && arr.Length == 1) Console.Write("[]");
+        else
+        {
+            if (arr.Length == 1) Console.Write($"[\"{arr[i]}\"]");
+            else if (i == 0) Console.Write($"[\"{arr[i]}\", ");
+            else Console.Write(i == arr.Length - 1 ? $"\"{arr[i]}\"]" : $"\"{arr[i]}\", ");
+        }
     }
 }
 
@@ -20,18 +25,26 @@ string[] StringFilter(string[] array, int maxLength) //основная функ
         }
     }
 
-    string[] resultArr = new string[newSize];
-    for (int i = 0; i < array.Length; i++)
+    if (newSize == 0)
     {
-        if (array[i].Length <= maxLength)
-        {
-            resultArr[count++] = array[i];
-        }
+        string[] resultArray = { "" };
+        return resultArray;
     }
-    return resultArr;
+    else
+    {
+        string[] resultArray = new string[newSize];
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i].Length <= maxLength)
+            {
+                resultArray[count++] = array[i];
+            }
+        }
+        return resultArray;
+    }
 }
 
-string[] array = { "Один", "Два", "Три", "Четыре", ":)" }; //исходный массив со строками
+string[] array = { "Один", "Два", "ф", "ывыв", ":-)" }; //исходный массив со строками
 
 string[] result = StringFilter(array, 3);
 
